@@ -19,6 +19,27 @@ const convertToJson = function (arr) {
 
 const bfs = function (pairs, source, target) {
   const json = convertToJson(pairs);
+  const alreadyVisited = [];
+  const queue = [source];
+  while (queue.length !== 0) {
+    const node = queue.pop();
+    alreadyVisited.push(node);
+    if (node === target) {
+      return true;
+    }
+    json[node].forEach((element) => {
+      if (!alreadyVisited.includes(element) && !queue.includes(element)) {
+        queue.unshift(element);
+      }
+    });
+  }
+  return false;
 };
 
+let arr = 'mm,cc\nmm,kk\nmm,hh\nmm,ll\naa,aa\naa,ll\naa,ee\ndd,aa\ndd,dd\ndd,ff\ndd,gg\ndd,kk\ndd,hh\ndd,ll\nii,ff\nii,bb\nii,kk\nff,mm\nff,ii\nff,ff\nff,cc\nff,kk\nff,ll\nbb,aa\nbb,bb\ngg,cc\ngg,hh\ngg,ee\ncc,ff\ncc,bb\ncc,gg\ncc,cc\ncc,ll\ncc,ee\nkk,mm\nkk,aa\nkk,dd\nkk,bb\nkk,ee\nhh,dd\nhh,gg\nhh,hh\nhh,ee\njj,mm\njj,dd\njj,gg\njj,kk\njj,hh\njj,jj\njj,ll\nll,ff\nll,bb\nee,aa\nee,ii\nee,gg\nee,cc\nee,kk\nee,hh\nee,ee'
+  .split('\n')
+  .map((e) => e.split(','));
+
+const result = bfs(arr, 'kk', 'jj');
+console.log(result);
 module.exports = { bfs };
