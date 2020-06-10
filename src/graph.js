@@ -22,14 +22,14 @@ const bfs = function (pairs, source, target) {
   const alreadyVisited = [];
   const queue = [source];
   while (queue.length !== 0) {
-    const node = queue.pop();
+    const node = queue.shift();
     alreadyVisited.push(node);
     if (node === target) {
       return true;
     }
     json[node].forEach((element) => {
       if (!alreadyVisited.includes(element) && !queue.includes(element)) {
-        queue.unshift(element);
+        queue.push(element);
       }
     });
   }
@@ -40,6 +40,6 @@ let arr = 'mm,cc\nmm,kk\nmm,hh\nmm,ll\naa,aa\naa,ll\naa,ee\ndd,aa\ndd,dd\ndd,ff\
   .split('\n')
   .map((e) => e.split(','));
 
-const result = bfs(arr, 'kk', 'jj');
+const result = bfs(arr, 'mm', 'jj');
 console.log(result);
 module.exports = { bfs };
