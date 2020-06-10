@@ -1,11 +1,24 @@
-//Example 
+//Example
 // Pairs => [[from,to],[to,from]]
 // Source => from
-// To => to 
+// To => to
 // Should return true.
 
-const bfs = function(pairs,source,target){
-  
+const convertToJson = function (arr) {
+  const json = {};
+  for (let index = 0; index < arr.length; index++) {
+    const [key, value] = arr[index];
+    if (json[key] === undefined) {
+      json[key] = [value];
+    } else {
+      json[key].push(value);
+    }
+  }
+  return json;
 };
 
-module.exports = {bfs};
+const bfs = function (pairs, source, target) {
+  const json = convertToJson(pairs);
+};
+
+module.exports = { bfs };
