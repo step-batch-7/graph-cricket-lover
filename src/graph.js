@@ -19,22 +19,20 @@ const convertToJson = function (arr) {
 
 const bfs = function (pairs, source, target) {
   const json = convertToJson(pairs);
-  if (json[target] === undefined) {
-    return false;
-  }
-  const alreadyVisited = [];
-  const queue = [source];
+  const alreadyVisited = [source];
+  const queue = [...json[source]];
   while (queue.length !== 0) {
     const node = queue.shift();
     alreadyVisited.push(node);
     if (node === target) {
       return true;
     }
-    json[node].forEach((element) => {
-      if (!alreadyVisited.includes(element) && !queue.includes(element)) {
-        queue.push(element);
-      }
-    });
+    json[node] &&
+      json[node].forEach((element) => {
+        if (!alreadyVisited.includes(element) && !queue.includes(element)) {
+          queue.push(element);
+        }
+      });
   }
   return false;
 };
@@ -43,6 +41,6 @@ let arr = 'mm,cc\nmm,kk\nmm,hh\nmm,ll\naa,aa\naa,ll\naa,ee\ndd,aa\ndd,dd\ndd,ff\
   .split('\n')
   .map((e) => e.split(','));
 
-const result = bfs(arr, 'jj', 'aa');
+const result = bfs([['a', 'b']], 'a', 'c');
 console.log(result);
 module.exports = { bfs };
