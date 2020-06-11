@@ -19,7 +19,7 @@ const convertToJson = function (arr) {
 
 const bfs = function (pairs, source, target) {
   const json = convertToJson(pairs);
-  const alreadyVisited = [source];
+  const alreadyVisited = [];
   const queue = json[source] === undefined ? [] : [...json[source]];
   while (queue.length !== 0) {
     const node = queue.shift();
@@ -43,12 +43,23 @@ let arr = 'mm,cc\nmm,kk\nmm,hh\nmm,ll\naa,aa\naa,ll\naa,ee\ndd,aa\ndd,dd\ndd,ff\
 
 const result = bfs(
   [
-    ['5', '6'],
-    ['6', '7'],
-    ['6', '8'],
+    [1, 2],
+    [2, 1],
+    [1, 4],
+    [4, 1],
+    [2, 4],
+    [4, 2],
+    [2, 3],
+    [3, 2],
+    [3, 5],
+    [5, 3],
+    [2, 5],
+    [5, 2],
+    [4, 5],
+    [5, 4],
   ],
-  '7',
-  '8'
+  1,
+  1
 );
 console.log(result);
 module.exports = { bfs };
