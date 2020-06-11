@@ -61,5 +61,4 @@ const result = bfs(
   1,
   1
 );
-console.log(result);
 module.exports = { bfs };
